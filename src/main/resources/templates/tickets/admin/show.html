@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:insert="~{fragments/fragments :: head}"></head>
+<body>
+	
+	<!-- Header -->
+			<div th:replace="~{fragments/fragments :: header} "></div>
+
+			<!-- /Header -->
+    
+	<main class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="py-4 mb-2 text-center">
+					Dettaglio Ticket: [[ ${ticket.titolo}]]
+				</h1>
+				<th:block>
+					<div class="card" >
+						
+					  <div class="card-body">
+					    <h5 class="card-title">[[${ticket.titolo}]]</h5>
+					    <p class="card-text">Descrizione: [[${ticket.descrizione}]]</p>
+						<p class="card-text">Data creazione: [[${ticket.dataCreazione}]]</p>
+						<p class="card-text">Stato: [[${ticket.stato}]]</p>
+						<p class="card-text">Operatore: [[${operatore.nome}]]</p>
+						<h6 class="card-text">Note</h6>
+						<th:block th:each="nota : ${note}">
+						<p class="card-text">Nota: [[${nota.testo}]]</p>
+						<p class="card-text">Data creazione: [[${nota.dataCreazione}]]</p>
+						</th:block>
+		
+					    <a th:href="@{/tickets/admin/dashboard}" class="btn btn-primary">Indietro</a>
+					  </div>
+					</div>
+				</th:block>
+			</div>
+			
+		</div>
+		
+		
+		
+	</main>
+
+    <!-- Bootstrap JS and dependencies -->
+	<div th:replace="~{fragments/fragments :: scripts} "></div>
+</body>
+</html>
