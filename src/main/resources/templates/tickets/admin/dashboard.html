@@ -5,10 +5,10 @@
 
 <body>
 
-		<!-- Header -->
-		<div th:replace="~{fragments/fragments :: header} "></div>
+	<!-- Header -->
+	<div th:replace="~{fragments/fragments :: header} "></div>
 
-		<!-- /Header -->
+	<!-- /Header -->
 
 
 	<main class="container">
@@ -56,10 +56,17 @@
 								<td th:text="${ticket.id}"></td>
 								<td th:text="${ticket.titolo}"></td>
 								<td th:text="${ticket.descrizione}"></td>
-								
-								<td><a th:href="@{/tickets/admin/{id}(id=${ticket.id})}" class="btn btn-sm btn-primary"> Show</a>
-									<a th:href="@{/tickets/admin/edit/{id}(id=${ticket.id})}" class="btn btn-sm btn-success">
-										Edit</a>
+								<td th:text="${ticket.dataCreazione}"></td>
+								<td th:text="${ticket.stato}"></td>
+								<!--Bottoni Azioni-->
+								<td><a th:href="@{/tickets/admin/{id}(id=${ticket.id})}" class="btn btn-sm btn-primary">
+										Visualizza</a>
+									<a th:href="@{/tickets/admin/edit/{id}(id=${ticket.id})}"
+										class="btn btn-sm btn-success">
+										Modifica</a>
+									<a th:href="@{/tickets/admin/nota/{id}(id=${ticket.id})}"
+										class="btn btn-sm btn-success">
+										+ Nota</a>
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
 										th:data-bs-target="'#delete-modal-' + ${ticket.id}">
@@ -84,10 +91,10 @@
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Close</button>
 													<form class="d-inline-block"
-														th:action="@{/tickets/admin/delete/{id}(id=${ticket.id})}" method="POST">
+														th:action="@{/tickets/admin/delete/{id}(id=${ticket.id})}"
+														method="POST">
 
-														<button type="submit"
-															class="btn btn-sm btn-danger">Delete</button>
+														<button type="submit" class="btn btn-danger">Delete</button>
 
 													</form>
 												</div>

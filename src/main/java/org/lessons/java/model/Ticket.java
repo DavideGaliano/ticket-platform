@@ -3,7 +3,10 @@ package org.lessons.java.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +25,26 @@ public class Ticket {
     private String titolo;
     private String descrizione;
     private LocalDateTime dataCreazione;
-    private String stato; // 'Da fare', 'In corso', 'Completato'
+    
+    @Enumerated(EnumType.STRING)
+    private TicketStatus stato; // 'Da fare', 'In corso', 'Completato'
+    
+ // Definizione dell'enum
+    public enum TicketStatus {
+        DA_FARE("Da fare"),
+        IN_CORSO("In corso"),
+        COMPLETATO("Completato");
+
+        private final String displayValue;
+
+        TicketStatus(String displayValue) {
+            this.displayValue = displayValue;
+        }
+
+        public String getDisplayValue() {
+            return displayValue;
+        }
+    }
 
     @ManyToOne
     @JoinColumn(name = "id_operatore")
@@ -32,7 +54,7 @@ public class Ticket {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "ticket")
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.REMOVE)
     private List<Nota> note;
 
 	public Long getId() {
@@ -67,14 +89,6 @@ public class Ticket {
 		this.dataCreazione = dataCreazione;
 	}
 
-	public String getStato() {
-		return stato;
-	}
-
-	public void setStato(String stato) {
-		this.stato = stato;
-	}
-
 	public Utente getOperatore() {
 		return operatore;
 	}
@@ -97,6 +111,14 @@ public class Ticket {
 
 	public void setNote(List<Nota> note) {
 		this.note = note;
+	}
+
+	public TicketStatus getStato() {
+		return stato;
+	}
+
+	public void setStato(TicketStatus stato) {
+		this.stato = stato;
 	}
 
     

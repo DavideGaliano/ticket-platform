@@ -25,7 +25,8 @@
 						<p class="card-text">Operatore: [[${operatore.nome}]]</p>
 						<h6 class="card-text">Note</h6>
 						<th:block th:each="nota : ${note}">
-						<p class="card-text">Nota: [[${nota.testo}]]</p>
+						<p class="card-text">Autore: [[${nota.autore.nome}]]</p>
+						<p class="card-text">Testo: [[${nota.testo}]]</p>
 						<p class="card-text">Data creazione: [[${nota.dataCreazione}]]</p>
 						</th:block>
 		

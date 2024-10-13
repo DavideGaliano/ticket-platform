@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/fragments :: head}"></head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/fragments :: header} "></div>
+
+<!-- /Header -->
+
+<main class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="py-4 mb-2 text-center">Aggiungi una nota per il ticket: [[${ticket.titolo}]]</h1>
+
+            <form th:action="@{/tickets/operators/nota/{id}(id=${ticket.id})}" method="POST" th:object="${nota}">
+                <div class="mb-3">
+                    <label for="testoNota" class="form-label">Nota</label>
+                    <textarea class="form-control" id="testoNota" th:field="*{testo}"></textarea>
+                    <div class="text-danger" th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Aggiungi Nota">
+                    <input type="reset" class="btn btn-warning btn-lg" value="Reset">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</main>
+
+<!-- Bootstrap JS and dependencies -->
+<div th:replace="~{fragments/fragments :: scripts} "></div>
+</body>
+</html>
