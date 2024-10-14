@@ -15,4 +15,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Long> {
 	@Query("SELECT u FROM Utente u JOIN u.roles r WHERE r.name = 'ROLE_OPERATORE' AND u.statoDisponibilita = true")
     List<Utente> findAvailableOperators();
 	
+	 boolean existsByUsername(String username);
+	 boolean existsByEmail(String email);
+	
 }

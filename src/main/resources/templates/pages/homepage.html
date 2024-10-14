@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Ticket Platform</title>
-</head>
+<head th:insert="~{fragments/fragments :: head}"></head>
 <body>
-	
-    <h1>Welcome</h1>
+	<main class="container">
+    <h1 class="mt-4">Welcome</h1>
 	<a class="btn btn-primary" th:href="@{/pages/login}" role="button">Link</a>
-	
+	</main>
 	<!-- Bootstrap JS and dependencies -->
 		<div th:replace="~{fragments/fragments :: scripts} "></div>
 </body>

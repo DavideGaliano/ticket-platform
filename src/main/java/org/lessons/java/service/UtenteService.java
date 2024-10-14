@@ -30,4 +30,14 @@ public class UtenteService {
     public Utente save(Utente utente) {
     	return utenteRepository.save(utente);
     }
+    
+ // Verifica se un username esiste già
+    public boolean existsByUsername(String username) {
+        return utenteRepository.existsByUsername(username);
+    }
+
+    // Verifica se un'email esiste già
+    public boolean existsByEmail(String email) {
+        return utenteRepository.existsByEmail(email);
+    }
 }
