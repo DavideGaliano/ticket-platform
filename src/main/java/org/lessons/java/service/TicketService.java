@@ -51,5 +51,15 @@ public class TicketService {
 	    public List<Ticket> findTicketsByOperatoreAndStato(Long operatoreId) {
 	        return ticketRepository.findByOperatoreIdAndStatoIn(operatoreId, List.of(Ticket.TicketStatus.IN_CORSO, Ticket.TicketStatus.DA_FARE));
 	    }
+	    
+	    // Filtra i ticket per categoria
+	    public List<Ticket> findByCategoria(String categoria) {
+	        return ticketRepository.findByCategoria_Nome(categoria);
+	    }
+
+	    // Filtra i ticket per stato
+	    public List<Ticket> findByStato(Ticket.TicketStatus stato) {
+	        return ticketRepository.findByStato(stato);
+	    }
 
 }

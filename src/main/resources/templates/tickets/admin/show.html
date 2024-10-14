@@ -22,6 +22,7 @@
 					    <p class="card-text">Descrizione: [[${ticket.descrizione}]]</p>
 						<p class="card-text">Data creazione: [[${ticket.dataCreazione}]]</p>
 						<p class="card-text">Stato: [[${ticket.stato}]]</p>
+						<p class="card-text">Categoria: [[${ticket.categoria.nome}]]</p>
 						<p class="card-text">Operatore: [[${operatore.nome}]]</p>
 						<h6 class="card-text">Note</h6>
 						<th:block th:each="nota : ${note}">
