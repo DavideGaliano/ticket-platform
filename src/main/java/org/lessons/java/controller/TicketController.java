@@ -100,6 +100,9 @@ public class TicketController {
 	@PostMapping("/admin/create")
 	public String store(@Valid @ModelAttribute("ticket") Ticket formTicket, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			List<Utente> availableOperators = utenteService.findAvailableOperators();
+			model.addAttribute("operators", availableOperators);
+			model.addAttribute("ticketStatuses", Ticket.TicketStatus.values());
 			return "/tickets/admin/create";
 		}
 
