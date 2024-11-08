@@ -2,6 +2,8 @@ package org.lessons.java.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class Nota {
 
     @ManyToOne
     @JoinColumn(name = "id_ticket")
+    @JsonBackReference
     private Ticket ticket;
 
 	public Long getId() {

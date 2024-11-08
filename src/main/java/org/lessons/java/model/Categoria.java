@@ -2,6 +2,8 @@ package org.lessons.java.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class Categoria {
     private String nome;
 
     @OneToMany(mappedBy = "categoria")
+    @JsonBackReference
     private List<Ticket> tickets;
 
 	public Long getId() {

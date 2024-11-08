@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +35,7 @@ public class Utente {
     private boolean statoDisponibilita; // Solo per il ruolo Operatore
 
     @OneToMany(mappedBy = "operatore")
+    @JsonBackReference
     private List<Ticket> ticketsAssegnati;
     
     @ManyToMany(fetch = FetchType.EAGER)
