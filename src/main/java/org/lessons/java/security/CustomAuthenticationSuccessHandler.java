@@ -16,9 +16,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
+    	//Ritorna una collezione dei ruoli o authorities associati all'utente autenticato.Ogni ruolo è rappresentato come un oggetto GrantedAuthority
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
         String redirectUrl = "";
+
+        //Per ogni ruolo (GrantedAuthority), verifica se è:ROLE_ADMIN reindirizza a /tickets/admin/dashboard ROLE_OPERATORE reindirizza a /tickets/operators/dashboard
 
         for (GrantedAuthority authority : authorities) {
             if (authority.getAuthority().equals("ROLE_ADMIN")) {

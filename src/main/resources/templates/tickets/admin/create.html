@@ -42,6 +42,18 @@
 								th:errors="*{descrizione}"></div>
 						</div>
 						<div class="mb-3">
+												    <label for="tiketCategoria" class="form-label">Categoria</label>
+												    <select class="form-control" id="categoria" name="categoria" th:field="*{categoria.id}">
+												        <!-- Itera sulle categorie disponibili -->
+												        <option th:each="categoria : ${categorie}"
+												                th:value="${categoria.id}"
+												                th:text="${categoria.nome}"
+																th:selected="${categoria.id == ticket.categoria.id}">
+												        </option>
+												    </select>
+												    <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+												</div>
+						<div class="mb-3">
 						    <label for="tiketStato" class="form-label">Stato</label>
 						    <select class="form-control" id="stato" name="stato" th:field="*{stato}">
 						        <!-- Itera sugli stati disponibili nell'enum -->

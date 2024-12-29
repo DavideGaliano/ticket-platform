@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments/fragments :: head}"></head>
-<body>
-	<main class="container">
-    <h1 class="mt-4">Welcome</h1>
-	<a class="btn btn-primary" th:href="@{/pages/login}" role="button">Link</a>
-	</main>
-	<!-- Bootstrap JS and dependencies -->
-		<div th:replace="~{fragments/fragments :: scripts} "></div>
+<body style="background-color: #2d3343; color: white;">
+    <main class="container text-center">
+        <!-- Titolo della pagina -->
+        <h1 class="mt-4">TiCkeT To RiDe</h1>
+        
+        <!-- Immagine centrata -->
+        <div class="mt-4">
+            <img th:src="@{/images/logoHompage.webp}" alt="Welcome Image" class="img-fluid" style="max-width: 50%; height: auto;">
+        </div>
+        
+        <!-- Pulsante LOGIN -->
+        <div class="mt-4">
+            <a class="btn btn-primary" th:href="@{/pages/login}" role="button">Login</a>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS and dependencies -->
+    <div th:replace="~{fragments/fragments :: scripts}"></div>
 </body>
 </html>

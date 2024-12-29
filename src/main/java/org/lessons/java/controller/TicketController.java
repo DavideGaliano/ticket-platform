@@ -3,9 +3,11 @@ package org.lessons.java.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.lessons.java.model.Categoria;
 import org.lessons.java.model.Nota;
 import org.lessons.java.model.Ticket;
 import org.lessons.java.model.Utente;
+import org.lessons.java.service.CategoriaService;
 import org.lessons.java.service.NotaService;
 import org.lessons.java.service.TicketService;
 import org.lessons.java.service.UtenteService;
@@ -37,6 +39,9 @@ public class TicketController {
 
 	@Autowired
 	NotaService notaService;
+	
+	@Autowired
+	CategoriaService categoriaService;
 
 	// READ
 
@@ -89,11 +94,13 @@ public class TicketController {
 	public String showCreateForm(Model model) {
 
 		List<Utente> availableOperators = utenteService.findAvailableOperators();
+		List<Categoria> availableCategories = categoriaService.findAll();
 
 		model.addAttribute("ticket", new Ticket());
 		// Passa l'enum TicketStatus come attributo
 		model.addAttribute("ticketStatuses", Ticket.TicketStatus.values());
 		model.addAttribute("operators", availableOperators);
+		model.addAttribute("categorie", availableCategories);
 		return "tickets/admin/create";
 	}
 
@@ -101,7 +108,9 @@ public class TicketController {
 	public String store(@Valid @ModelAttribute("ticket") Ticket formTicket, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			List<Utente> availableOperators = utenteService.findAvailableOperators();
+			List<Categoria> availableCategories = categoriaService.findAll();
 			model.addAttribute("operators", availableOperators);
+			model.addAttribute("categorie", availableCategories);
 			model.addAttribute("ticketStatuses", Ticket.TicketStatus.values());
 			return "/tickets/admin/create";
 		}
